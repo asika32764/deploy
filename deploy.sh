@@ -16,9 +16,9 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]
 fi
 
 # Save some useful information
-# REPO=`git config remote.origin.url`
-# SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
-# SHA=`git rev-parse --verify HEAD`
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SHA=`git rev-parse --verify HEAD`
 
 # Run our compile script
 doCompile
@@ -51,4 +51,5 @@ eval `ssh-agent -s`
 ssh-add deploy_key
 
 # Now that we're all set up, we can push.
-git push origin $TARGET_BRANCH
+git remote add deploy $SSH_REPO
+git push deploy $TARGET_BRANCH
