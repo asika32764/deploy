@@ -52,4 +52,4 @@ ssh-add deploy_key
 
 # Now that we're all set up, we can push.
 git remote add deploy $SSH_REPO
-git push deploy $TARGET_BRANCH
+git push deploy master:master
