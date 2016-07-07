@@ -21,6 +21,7 @@ SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
 # Run our compile script
+git checkout $TARGET_BRANCH
 doCompile
 
 # Now let's go have some fun with the cloned repo
@@ -38,6 +39,7 @@ ls
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 git add .
+git branch
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
